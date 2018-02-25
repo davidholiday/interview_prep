@@ -10,11 +10,11 @@ public class Fibonacci {
     /**
      * easiest most naive implementation of fibonacci number generation
      *
-     * @param count: how many fibonacci numbers beyond the first two to generate
+     * @param count: how many fibonacci numbers to generate
      *
      * @return list of computed fibonacci numbers
      */
-    public static List<Integer> FibonacciForCount(int count) {
+    public static List<Integer> fibonacciForCount(int count) {
 
         // set up the first two numbers in the series and prepopulate the return list
         // with them
@@ -29,7 +29,7 @@ public class Fibonacci {
             int nextFibonacciNumber = n1 + n2;
             fibonacciNumberList.add(nextFibonacciNumber);
 
-            // slide values to the left so we can compute the next number at the next 
+            // slide values to the left so we can compute the next number at the next
             // iteration
             n1 = n2;
             n2 = nextFibonacciNumber;
