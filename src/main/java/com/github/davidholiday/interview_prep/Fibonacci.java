@@ -3,6 +3,7 @@ package com.github.davidholiday.interview_prep;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.function.LongSupplier;
 
 
 public class Fibonacci {
@@ -56,7 +57,29 @@ public class Fibonacci {
             return getNthFibonacciNumberRecursive(n - 1) + getNthFibonacciNumberRecursive(n - 2);
         }
 
+    }
+
+
+    private static class FibonacciSupplier implements LongSupplier {
+        private long previousPreviousFibonacciNumber = 0;
+        private long previousFibonacciNumber = 1;
+        private long currentFibonacciNumber = -1;
+
+        @Override
+        public long getAsLong() {
+            // update current and slide previous over one position left
+            currentFibonacciNumber = previousPreviousFibonacciNumber + previousFibonacciNumber;
+            previousPreviousFibonacciNumber = previousFibonacciNumber;
+            previousFibonacciNumber = currentFibonacciNumber;
+
+            return currentFibonacciNumber;
+        }
 
     }
 
+
+    
 }
+
+
+
