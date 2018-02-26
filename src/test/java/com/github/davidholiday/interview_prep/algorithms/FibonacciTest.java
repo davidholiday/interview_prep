@@ -1,4 +1,4 @@
-package com.github.davidholiday.interview_prep;
+package com.github.davidholiday.interview_prep.algorithms;
 
 
 import java.util.List;

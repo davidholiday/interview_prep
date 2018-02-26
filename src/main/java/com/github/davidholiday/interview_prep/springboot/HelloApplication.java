@@ -1,4 +1,4 @@
-package com.github.davidholiday.interview_prep.com.github.davidholiday.interview_prep.springboot;
+package com.github.davidholiday.interview_prep.springboot;
 
 
 import java.util.Arrays;
