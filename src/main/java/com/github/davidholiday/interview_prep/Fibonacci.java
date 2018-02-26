@@ -8,25 +8,26 @@ import java.util.ArrayList;
 public class Fibonacci {
 
     /**
-     * easiest most naive implementation of fibonacci number generation
+     * easiest most naive implementation of fibonacci number generation. generates the first
+     * {$count} fibonacci numbers
      *
      * @param count: how many fibonacci numbers to generate
      *
      * @return list of computed fibonacci numbers
      */
-    public static List<Integer> fibonacciForCount(int count) {
+    public static List<Long> fibonacciForCountIteration(int count) {
 
         // set up the first two numbers in the series and prepopulate the return list
         // with them
-        int n1 = 0;
-        int n2 = 1;
+        long n1 = 0;
+        long n2 = 1;
 
-        List<Integer> fibonacciNumberList = new ArrayList<>();
+        List<Long> fibonacciNumberList = new ArrayList<>();
         fibonacciNumberList.add(n1);
         fibonacciNumberList.add(n2);
 
         for (int i=2; i < count; i ++) {
-            int nextFibonacciNumber = n1 + n2;
+            long nextFibonacciNumber = n1 + n2;
             fibonacciNumberList.add(nextFibonacciNumber);
 
             // slide values to the left so we can compute the next number at the next
@@ -39,5 +40,23 @@ public class Fibonacci {
     }
 
 
+    /**
+     * recursive method to compute the nth fibonacci number
+     *
+     * @param n which number in the fibonacci series to return. indexing starts at zero.
+     * @return the nth number in the fibonacci series
+     */
+    public static long getNthFibonacciNumberRecursive(int n) {
+
+        // base case
+        if ((n == 0) || (n == 1)) { return n; }
+
+        // else recurse
+        else {
+            return getNthFibonacciNumberRecursive(n - 1) + getNthFibonacciNumberRecursive(n - 2);
+        }
+
+
+    }
 
 }
