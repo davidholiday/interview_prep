@@ -4,8 +4,12 @@ package com.github.davidholiday.interview_prep;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.function.LongSupplier;
+import java.util.stream.LongStream;
 
 
+/**
+ * static methods to generate Fibonacci numbers
+ */
 public class Fibonacci {
 
     /**
@@ -60,6 +64,9 @@ public class Fibonacci {
     }
 
 
+    /**
+     * supplies Fibonacci numbers to a LongStream
+     */
     private static class FibonacciSupplier implements LongSupplier {
         private long previousPreviousFibonacciNumber = 0;
         private long previousFibonacciNumber = 1;
@@ -67,8 +74,14 @@ public class Fibonacci {
 
         @Override
         public long getAsLong() {
-            // update current and slide previous over one position left
-            currentFibonacciNumber = previousPreviousFibonacciNumber + previousFibonacciNumber;
+
+            // to ensure the first value is '0' and not '1'. breaks the naming convention a bit but only for the
+            // first two cycles
+            currentFibonacciNumber =
+                    (currentFibonacciNumber >= 0) ?
+                            (previousPreviousFibonacciNumber + previousFibonacciNumber) :
+                            (0);
+
             previousPreviousFibonacciNumber = previousFibonacciNumber;
             previousFibonacciNumber = currentFibonacciNumber;
 
@@ -78,7 +91,18 @@ public class Fibonacci {
     }
 
 
-    
+    /**
+     * returns a generator that supplies an infinite stream of Fibonacci numbers
+     *
+     * @return
+     */
+    public static LongStream getFibonacciGenerator() {
+        FibonacciSupplier fibonacciSupplier = new FibonacciSupplier();
+        LongStream fibonacciGenerator = LongStream.generate(fibonacciSupplier);
+        return fibonacciGenerator;
+    }
+
+
 }
 
 
